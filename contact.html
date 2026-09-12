@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا | اخبارك</title>
+    <meta name="description" content="تواصل مع فريق اخبارك - نسعد باستقبال استفساراتكم واقتراحاتكم">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-right">
+                <span id="current-date"></span>
+                <span class="separator">|</span>
+                <span><i class="fas fa-cloud-sun"></i> القليوبية 28°C</span>
+            </div>
+            <div class="top-bar-left">
+                <a href="https://x.com/Bondk020" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/share/1C2KvE5M2R/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/mahmoudbondk9" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon"><i class="fas fa-newspaper"></i></span>
+                    <span class="logo-text"><strong>اخبارك</strong></span>
+                </a>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html#politics">سياسة</a></li>
+                    <li><a href="index.html#economy">اقتصاد</a></li>
+                    <li><a href="index.html#sports">رياضة</a></li>
+                    <li><a href="index.html#tech">تكنولوجيا</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="contact.html" class="active">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn" id="searchToggle"><i class="fas fa-search"></i></button>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <input type="text" placeholder="ابحث عن خبر...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <button class="close-search" id="closeSearch"><i class="fas fa-times"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-hero">
+            <div class="container">
+                <h1>اتصل بنا</h1>
+                <p>نحن هنا للإجابة على استفساراتكم واستقبال اقتراحاتكم</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>معلومات التواصل</h2>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>البريد الإلكتروني</h4>
+                            <p>mahmoudbondk005@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>الهاتف</h4>
+                            <p>01061621339</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>العنوان</h4>
+                            <p>قليوب البلد، محافظة القليوبية، مصر</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>ساعات العمل</h4>
+                            <p>الأحد - الخميس: 9 صباحاً - 6 مساءً</p>
+                            <p>الجمعة والسبت: مغلق</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-box">
+                    <h2>أرسل رسالة</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">الاسم الكامل</label>
+                                <input type="text" id="name" name="name" required placeholder="أدخل اسمك">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">البريد الإلكتروني</label>
+                                <input type="email" id="email" name="email" required placeholder="example@email.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">الموضوع</label>
+                            <input type="text" id="subject" name="subject" required placeholder="موضوع الرسالة">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">الرسالة</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="اكتب رسالتك هنا..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <span class="logo-icon"><i class="fas fa-newspaper"></i></span>
+                        <span class="logo-text"><strong>اخبارك</strong></span>
+                    </div>
+                    <p>موقع إخباري احترافي يقدم آخر الأخبار المحلية والعالمية بمصداقية وسرعة.</p>
+                    <div class="social-links">
+                        <a href="https://x.com/Bondk020" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/share/1C2KvE5M2R/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/mahmoudbondk9" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        
+                        
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>الأقسام</h4>
+                    <ul>
+                        <li><a href="index.html#politics">سياسة</a></li>
+                        <li><a href="index.html#economy">اقتصاد</a></li>
+                        <li><a href="index.html#sports">رياضة</a></li>
+                        <li><a href="index.html#tech">تكنولوجيا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط هامة</h4>
+                    <ul>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="terms.html">سياسة الاستخدام</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-envelope"></i> mahmoudbondk005@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> 01061621339</p>
+                    <p><i class="fas fa-map-marker-alt"></i> قليوب البلد، القليوبية، مصر</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 اخبارك. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لتواصلك معنا! سنرد عليك في أقرب وقت ممكن.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

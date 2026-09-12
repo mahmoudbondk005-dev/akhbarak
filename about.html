@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن | اخبارك</title>
+    <meta name="description" content="تعرف على فريق اخبارك ورؤيتنا ورسالتنا في تقديم الأخبار بمصداقية ومهنية">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-right">
+                <span id="current-date"></span>
+                <span class="separator">|</span>
+                <span><i class="fas fa-cloud-sun"></i> القليوبية 28°C</span>
+            </div>
+            <div class="top-bar-left">
+                <a href="https://x.com/Bondk020" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/share/1C2KvE5M2R/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/mahmoudbondk9" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon"><i class="fas fa-newspaper"></i></span>
+                    <span class="logo-text"><strong>اخبارك</strong></span>
+                </a>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html#politics">سياسة</a></li>
+                    <li><a href="index.html#economy">اقتصاد</a></li>
+                    <li><a href="index.html#sports">رياضة</a></li>
+                    <li><a href="index.html#tech">تكنولوجيا</a></li>
+                    <li><a href="about.html" class="active">من نحن</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn" id="searchToggle"><i class="fas fa-search"></i></button>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <input type="text" placeholder="ابحث عن خبر...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <button class="close-search" id="closeSearch"><i class="fas fa-times"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-hero">
+            <div class="container">
+                <h1>من نحن</h1>
+                <p>تعرف على قصة اخبارك ورؤيتنا</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="page-content">
+                <section class="about-section">
+                    <h2><i class="fas fa-bullseye"></i> رؤيتنا</h2>
+                    <p>
+                        نسعى في <strong>اخبارك</strong> لأن نكون المصدر الأول والأكثر ثقة للأخبار في العالم العربي. 
+                        نؤمن بأن المعلومات الدقيقة والسريعة حق أساسي لكل مواطن، ونعمل يومياً على تقديم تغطية إخبارية 
+                        شاملة وموضوعية تغطي الأحداث المحلية والإقليمية والدولية.
+                    </p>
+                </section>
+
+                <section class="about-section">
+                    <h2><i class="fas fa-flag"></i> رسالتنا</h2>
+                    <p>
+                        تقديم أخبار موثوقة وسريعة ومحتوى إعلامي هادف يساهم في توعية المجتمع وتمكين القارئ من فهم 
+                        الأحداث المحيطة به. نلتزم بالمعايير المهنية العالية في الصحافة، ونبتعد عن الإثارة والأخبار الكاذبة.
+                    </p>
+                </section>
+
+                <section class="about-section">
+                    <h2><i class="fas fa-star"></i> قيمنا</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>المصداقية</h3>
+                            <p>نتحقق من كل خبر قبل نشره ونعتمد على مصادر موثوقة فقط.</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-bolt"></i>
+                            <h3>السرعة</h3>
+                            <p>نغطي الأحداث لحظة بلحظة لنكون أول من يوصلك الخبر.</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-balance-scale"></i>
+                            <h3>الحياد</h3>
+                            <p>نقدم الأخبار بموضوعية دون تحيز أو أجندات سياسية.</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-users"></i>
+                            <h3>القارئ أولاً</h3>
+                            <p>نضع مصلحة القارئ وحقه في المعرفة فوق أي اعتبار آخر.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <h2><i class="fas fa-history"></i> قصتنا</h2>
+                    <p>
+                        تأسس موقع <strong>اخبارك</strong> ليكون منصة إخبارية عصرية تجمع بين المهنية الصحفية التقليدية 
+                        والتقنيات الحديثة. بدأنا بفريق صغير من الصحفيين والمحررين المتحمسين، واليوم نغطي مختلف 
+                        المجالات من السياسة والاقتصاد إلى الرياضة والتكنولوجيا والثقافة، ونصل إلى آلاف القراء يومياً.
+                    </p>
+                    <p>
+                        نعمل باستمرار على تطوير أدواتنا ومحتوانا لنبقى دائماً في خدمة القارئ العربي، أينما كان.
+                    </p>
+                </section>
+
+                <section class="about-section">
+                    <h2><i class="fas fa-envelope-open-text"></i> تواصل معنا</h2>
+                    <p>
+                        نسعد دائماً بتواصلكم واقتراحاتكم. يمكنكم مراسلتنا عبر صفحة 
+                        <a href="contact.html" class="text-link">اتصل بنا</a> أو عبر البريد الإلكتروني 
+                        <strong>mahmoudbondk005@gmail.com</strong>.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <span class="logo-icon"><i class="fas fa-newspaper"></i></span>
+                        <span class="logo-text"><strong>اخبارك</strong></span>
+                    </div>
+                    <p>موقع إخباري احترافي يقدم آخر الأخبار المحلية والعالمية بمصداقية وسرعة.</p>
+                    <div class="social-links">
+                        <a href="https://x.com/Bondk020" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/share/1C2KvE5M2R/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/mahmoudbondk9" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        
+                        
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>الأقسام</h4>
+                    <ul>
+                        <li><a href="index.html#politics">سياسة</a></li>
+                        <li><a href="index.html#economy">اقتصاد</a></li>
+                        <li><a href="index.html#sports">رياضة</a></li>
+                        <li><a href="index.html#tech">تكنولوجيا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط هامة</h4>
+                    <ul>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="terms.html">سياسة الاستخدام</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-envelope"></i> mahmoudbondk005@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> 01061621339</p>
+                    <p><i class="fas fa-map-marker-alt"></i> قليوب البلد، القليوبية، مصر</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 اخبارك. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
