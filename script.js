@@ -74,15 +74,15 @@ function renderNews(news){
     const sports=news.filter(n=>n.category==='رياضة').slice(0,4);
     const techEconomy=news.filter(n=>n.category==='تكنولوجيا'||n.category==='اقتصاد').slice(0,6);
 
-    document.getElementById('heroMain').innerHTML=featured?`<article class="hero-article"><div class="hero-image">${img(featured.image_url,featured.title)}${badge(featured.category)}</div><div class="hero-content"><h1><a href="#">${esc(featured.title)}</a></h1><p class="excerpt">${esc(featured.excerpt||featured.content.slice(0,220))}</p><div class="meta"><span><i class="far fa-clock"></i> ${timeAgo(featured.published_at)}</span></div></div></article>`:'';
-    document.getElementById('heroSide').innerHTML=side.map(n=>`<article class="side-article"><div class="side-image">${img(n.image_url,n.title)}${badge(n.category)}</div><h3><a href="#">${esc(n.title)}</a></h3><div class="meta"><span><i class="far fa-clock"></i> ${timeAgo(n.published_at)}</span></div></article>`).join('');
+    document.getElementById('heroMain').innerHTML=featured?`<article class="hero-article"><div class="hero-image">${img(featured.image_url,featured.title)}${badge(featured.category)}</div><div class="hero-content"><h1><a href="${articleUrl(featured.id)}">${esc(featured.title)}</a></h1><p class="excerpt">${esc(featured.excerpt||featured.content.slice(0,220))}</p><div class="meta"><span><i class="far fa-clock"></i> ${timeAgo(featured.published_at)}</span></div></div></article>`:'';
+    document.getElementById('heroSide').innerHTML=side.map(n=>`<article class="side-article"><div class="side-image">${img(n.image_url,n.title)}${badge(n.category)}</div><h3><a href="${articleUrl(n.id)}">${esc(n.title)}</a></h3><div class="meta"><span><i class="far fa-clock"></i> ${timeAgo(n.published_at)}</span></div></article>`).join('');
     document.getElementById('latestNews').innerHTML=latest.map(card).join('');
     document.getElementById('politicsNews').innerHTML=politics.map(horizontalCard).join('') || emptyCategory();
     document.getElementById('sportsNews').innerHTML=sports.map(horizontalCard).join('') || emptyCategory();
     document.getElementById('techNews').innerHTML=techEconomy.map(card).join('') || emptyCategory();
 
     const popular=news.slice(0,5);
-    document.getElementById('popularList').innerHTML=popular.map((n,i)=>`<li><span class="rank">${i+1}</span><a href="#">${esc(n.title)}</a></li>`).join('') || '<li>لا توجد أخبار بعد</li>';
+    document.getElementById('popularList').innerHTML=popular.map((n,i)=>`<li><span class="rank">${i+1}</span><a href="${articleUrl(n.id)}">${esc(n.title)}</a></li>`).join('') || '<li>لا توجد أخبار بعد</li>';
     const counts={}; news.forEach(n=>counts[n.category]=(counts[n.category]||0)+1);
     document.getElementById('categoriesList').innerHTML=['سياسة','اقتصاد','رياضة','تكنولوجيا','ثقافة'].map(c=>`<li><a href="#latest" data-category="${esc(c)}">${esc(c)} <span>${counts[c]||0}</span></a></li>`).join('');
     const ticker= news.slice(0,5).map(n=>esc(n.title)).join(' • ');
@@ -90,8 +90,9 @@ function renderNews(news){
     bindCategoryFilters(news);
 }
 
-function card(n){return `<article class="news-card"><div class="card-image">${img(n.image_url,n.title)}${badge(n.category)}</div><div class="card-content"><h3><a href="#">${esc(n.title)}</a></h3>${n.excerpt?`<p>${esc(n.excerpt)}</p>`:''}<div class="meta"><span><i class="far fa-clock"></i> ${timeAgo(n.published_at)}</span></div></div></article>`;}
-function horizontalCard(n){return `<article class="horizontal-card"><div class="h-image">${img(n.image_url,n.title)}</div><div class="h-content"><h3><a href="#">${esc(n.title)}</a></h3><p>${esc(n.excerpt||n.content.slice(0,150))}</p><div class="meta"><span><i class="far fa-clock"></i> ${timeAgo(n.published_at)}</span></div></div></article>`;}
+function articleUrl(id){ return `article.html?id=${encodeURIComponent(id)}`; }
+function card(n){return `<article class="news-card"><div class="card-image">${img(n.image_url,n.title)}${badge(n.category)}</div><div class="card-content"><h3><a href="${articleUrl(n.id)}">${esc(n.title)}</a></h3>${n.excerpt?`<p>${esc(n.excerpt)}</p>`:''}<div class="meta"><span><i class="far fa-clock"></i> ${timeAgo(n.published_at)}</span></div></div></article>`;}
+function horizontalCard(n){return `<article class="horizontal-card"><div class="h-image">${img(n.image_url,n.title)}</div><div class="h-content"><h3><a href="${articleUrl(n.id)}">${esc(n.title)}</a></h3><p>${esc(n.excerpt||n.content.slice(0,150))}</p><div class="meta"><span><i class="far fa-clock"></i> ${timeAgo(n.published_at)}</span></div></div></article>`;}
 function emptyCategory(){return '<p style="padding:10px">لا توجد أخبار في هذا القسم حاليًا.</p>';}
 function showEmptyState(msg='لا توجد أخبار منشورة حاليًا.'){
     ['heroMain','heroSide','latestNews','politicsNews','sportsNews','techNews','popularList'].forEach(id=>{const e=document.getElementById(id);if(e)e.innerHTML= id==='popularList'?'<li>لا توجد أخبار بعد</li>': id.includes('News')||id.includes('hero')?emptyCategory():'';});

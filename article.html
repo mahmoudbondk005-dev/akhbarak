@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخبر | اخبارك</title>
+    <meta name="description" content="اقرأ تفاصيل الخبر على اخبارك">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-right">
+                <span id="current-date"></span><span class="separator">|</span>
+                <span><i class="fas fa-cloud-sun"></i> القليوبية 28°C</span>
+            </div>
+            <div class="top-bar-left">
+                <a href="https://x.com/Bondk020" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/share/1C2KvE5M2R/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/mahmoudbondk9" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><span class="logo-icon"><i class="fas fa-newspaper"></i></span><span class="logo-text"><strong>اخبارك</strong></span></a>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html#politics">سياسة</a></li>
+                    <li><a href="index.html#economy">اقتصاد</a></li>
+                    <li><a href="index.html#sports">رياضة</a></li>
+                    <li><a href="index.html#tech">تكنولوجيا</a></li>
+                    <li><a href="index.html#culture">ثقافة</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="الوضع الليلي"><i class="fas fa-moon"></i></button>
+                <button class="menu-toggle" id="menuToggle" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div id="articleLoading" class="article-state">جاري تحميل الخبر...</div>
+            <article id="articlePage" class="article-page" style="display:none">
+                <div id="articleCategory"></div>
+                <h1 id="articleTitle"></h1>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> <span id="articleDate"></span></span>
+                </div>
+                <img id="articleImage" class="article-cover" alt="">
+                <p id="articleExcerpt" class="article-excerpt"></p>
+                <div id="articleContent" class="article-content"></div>
+                <a class="back-home" href="index.html"><i class="fas fa-arrow-right"></i> العودة للرئيسية</a>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="logo">
+                        <div class="logo-icon"><i class="fas fa-newspaper"></i></div>
+                        <span class="logo-text"><strong>اخبارك</strong></span>
+                    </div>
+                    <p>موقع إخباري احترافي يقدم آخر الأخبار المحلية والعالمية بمصداقية وسرعة.</p>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>© 2026 اخبارك. جميع الحقوق محفوظة.</p></div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script>
+    (() => {
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            html.setAttribute('data-theme','dark');
+            themeToggle.querySelector('i').classList.replace('fa-moon','fa-sun');
+        }
+        themeToggle.addEventListener('click', () => {
+            const dark = html.getAttribute('data-theme') === 'dark';
+            if (dark) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme','light');
+                themeToggle.querySelector('i').classList.replace('fa-sun','fa-moon');
+            } else {
+                html.setAttribute('data-theme','dark');
+                localStorage.setItem('theme','dark');
+                themeToggle.querySelector('i').classList.replace('fa-moon','fa-sun');
+            }
+        });
+        document.getElementById('current-date').textContent =
+            new Date().toLocaleDateString('ar-EG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+        const menu = document.getElementById('menuToggle');
+        const nav = document.getElementById('mainNav');
+        menu.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const icon = menu.querySelector('i');
+            icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times');
+        });
+
+        const esc = s => String(s ?? '').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+        const params = new URLSearchParams(location.search);
+        const id = params.get('id');
+        const loading = document.getElementById('articleLoading');
+        const page = document.getElementById('articlePage');
+
+        if (!id || !window.supabase || !window.SUPABASE_URL || !window.SUPABASE_ANON_KEY) {
+            loading.textContent = 'لم يتم العثور على الخبر.';
+            return;
+        }
+
+        const db = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+        db.from('news').select('*').eq('id', id).single().then(({data,error}) => {
+            if (error || !data) {
+                loading.textContent = 'الخبر غير موجود أو تم حذفه.';
+                return;
+            }
+            document.title = data.title + ' | اخبارك';
+            document.getElementById('articleCategory').innerHTML =
+                '<span class="category-badge">' + esc(data.category) + '</span>';
+            document.getElementById('articleTitle').textContent = data.title;
+            document.getElementById('articleDate').textContent =
+                new Date(data.published_at).toLocaleString('ar-EG',{dateStyle:'full',timeStyle:'short'});
+            const image = document.getElementById('articleImage');
+            if (data.image_url) {
+                image.src = data.image_url;
+                image.alt = data.title;
+                image.style.display = 'block';
+            } else image.style.display = 'none';
+            document.getElementById('articleExcerpt').textContent = data.excerpt || '';
+            document.getElementById('articleExcerpt').style.display = data.excerpt ? 'block' : 'none';
+            document.getElementById('articleContent').innerHTML = esc(data.content || '').replace(/\n/g,'<br><br>');
+            loading.style.display = 'none';
+            page.style.display = 'block';
+        });
+    })();
+    </script>
+</body>
+</html>
