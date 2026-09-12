@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم اخبارك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:Cairo,sans-serif;background:#f5f7fa;color:#1a1a2e}.wrap{max-width:1100px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{font-size:25px;font-weight:800;color:#0d47a1}.card{background:#fff;border-radius:14px;box-shadow:0 4px 20px #00000010;padding:20px;margin-bottom:20px}.login{max-width:440px;margin:8vh auto}.h{font-size:20px;font-weight:800;margin:0 0 15px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{display:block;font-weight:700;margin-bottom:6px}input,textarea,select{width:100%;padding:11px 12px;border:1px solid #dfe4ea;border-radius:9px;font:inherit;background:#fff}textarea{min-height:150px;resize:vertical}.btn{border:0;border-radius:9px;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer}.primary{background:#0d47a1;color:#fff}.danger{background:#d32f2f;color:#fff}.muted{background:#eef1f5;color:#222}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.actions{display:flex;gap:8px}.news-list{display:grid;gap:10px}.news{display:flex;gap:14px;border:1px solid #e2e6eb;border-radius:12px;padding:12px;align-items:center}.news img{width:100px;height:70px;object-fit:cover;border-radius:8px}.news-main{flex:1}.news-title{font-weight:800}.meta{font-size:13px;color:#777}.check{display:flex;align-items:center;gap:8px}.check input{width:auto}.status{margin:10px 0;padding:10px;border-radius:8px;background:#f0f4ff;color:#0d47a1}.hidden{display:none!important}@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.news{align-items:flex-start}.news img{width:85px;height:65px}.top{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<div id="loginView" class="wrap login">
+  <div class="card">
+    <div class="brand">📰 اخبارك</div>
+    <h1 class="h">دخول لوحة التحكم</h1>
+    <div id="loginStatus"></div>
+    <form id="loginForm">
+      <label>البريد الإلكتروني</label><input id="email" type="email" required autocomplete="username">
+      <label style="margin-top:12px">كلمة المرور</label><input id="password" type="password" required autocomplete="current-password">
+      <button class="btn primary" style="width:100%;margin-top:15px">دخول</button>
+    </form>
+  </div>
+</div>
+
+<div id="adminView" class="wrap hidden">
+  <div class="top"><div><div class="brand">📰 اخبارك</div><div class="meta">لوحة إدارة الأخبار</div></div><div class="row"><a class="btn muted" href="index.html">عرض الموقع</a><button id="logoutBtn" class="btn danger">خروج</button></div></div>
+  <div id="adminStatus"></div>
+  <div class="card">
+    <h2 class="h" id="formTitle">إضافة خبر جديد</h2>
+    <form id="newsForm" class="grid">
+      <input type="hidden" id="newsId">
+      <div class="full"><label>عنوان الخبر</label><input id="title" required maxlength="180"></div>
+      <div><label>القسم</label><select id="category" required><option value="سياسة">سياسة</option><option value="اقتصاد">اقتصاد</option><option value="رياضة">رياضة</option><option value="تكنولوجيا">تكنولوجيا</option><option value="ثقافة">ثقافة</option></select></div>
+      <div><label>تاريخ الخبر</label><input id="publishedAt" type="datetime-local" required></div>
+      <div class="full"><label>ملخص الخبر</label><textarea id="excerpt" maxlength="500" placeholder="النص القصير الذي يظهر في البطاقات"></textarea></div>
+      <div class="full"><label>محتوى الخبر</label><textarea id="content" required placeholder="محتوى الخبر الكامل"></textarea></div>
+      <div class="full"><label>صورة الخبر</label><input id="image" type="file" accept="image/*"><div id="currentImage" class="meta" style="margin-top:5px"></div></div>
+      <label class="check"><input id="featured" type="checkbox"> خبر مميز</label>
+      <div class="actions full"><button class="btn primary" id="saveBtn">حفظ الخبر</button><button type="button" class="btn muted" id="cancelBtn">إلغاء التعديل</button></div>
+    </form>
+  </div>
+  <div class="card">
+    <div class="top" style="margin-bottom:14px"><h2 class="h" style="margin:0">الأخبار</h2><input id="search" style="max-width:320px" placeholder="بحث في الأخبار..."></div>
+    <div id="newsList" class="news-list"></div>
+  </div>
+</div>
+<script src="admin.js"></script>
+</body>
+</html>
